@@ -7,16 +7,16 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <nav className="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 shadow-lg text-white px-6 py-4">
+    <nav className="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 shadow-lg text-white px-4 py-4 sm:px-6">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className="bg-transparent flex flex-row sm:flex-row items-center gap-2">
-          <img src={logo1} alt="SVC Logo" className="bg-transparent h-5 w-auto sm:h-9" />
-          <img src={logo2} alt="IEEE Logo" className="bg-transparent h-5 w-auto sm:h-9" />
+        <div className="bg-transparent flex flex-row items-center gap-2 sm:gap-3">
+          <img src={logo1} alt="SVC Logo" className="bg-transparent h-6 w-auto sm:h-9" />
+          <img src={logo2} alt="IEEE Logo" className="bg-transparent h-6 w-auto sm:h-9" />
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-12">
+        <ul className="hidden md:flex space-x-8 lg:space-x-12">
           <li><Link to="/" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Home</Link></li>
           <li><Link to="/about" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">About</Link></li>
           <li><Link to="/execom" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Execom</Link></li>
@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu - FIXED PATHS */}
       {isOpen && (
-        <ul className="md:hidden mt-4 space-y-4 px-2">
+        <ul className="md:hidden mt-4 space-y-3 px-2 pb-4">
           <li><Link to="/home" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Home</Link></li>
           <li><Link to="/about" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>About</Link></li>
           <li><Link to="/execom" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Execom</Link></li>

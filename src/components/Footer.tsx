@@ -16,11 +16,11 @@ const Footer: React.FC<FooterProps> = ({
     <footer className="bg-gradient-to-t from-slate-950 via-slate-900 to-blue-950 border-t border-slate-800">
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-10">
  {/* Main Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 gap-8 mb-12 sm:grid-cols-2 lg:grid-cols-4">
           
           {/* SVCE Branding */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
+          <div className="space-y-4 text-center sm:text-left">
+            <div className="flex items-center gap-3 justify-center sm:justify-start">
               <img src={svceLeft} alt="SVCE" className="h-10 w-auto drop-shadow-lg" />
               <img src={sunRight} alt="Tirupati" className="h-10 w-auto drop-shadow-lg" />
             </div>
@@ -32,8 +32,8 @@ const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-semibold text-lg mb-6 tracking-wide">Quick Links</h4>
+          <div className="text-center sm:text-left">
+            <h4 className="text-white font-semibold text-lg mb-4 sm:mb-6 tracking-wide">Quick Links</h4>
             <nav className="space-y-3">
               {[
                 { name: 'Home', path: '/' },
@@ -55,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Contact & Social */}
-          <div className="space-y-6 lg:pt-2">
+          <div className="space-y-6 lg:pt-2 text-center sm:text-left">
             <div>
               <h4 className="text-white font-semibold text-lg mb-4 tracking-wide">Contact Information</h4>
               <div className="space-y-2 text-sm text-slate-400">
@@ -74,7 +74,7 @@ const Footer: React.FC<FooterProps> = ({
             {/* Social Links */}
             <div className="relative z-10">
               <h5 className="text-slate-300 font-medium mb-3">Follow Us</h5>
-              <div className="flex gap-3">
+              <div className="flex gap-3 justify-center sm:justify-start">
                 {[
                   { icon: <FaInstagram/>, href: 'https://www.instagram.com/svcolleges?igsh=MWU4cXFiZHJ3b2RldA==' },
                   { icon: <FaLinkedin /> , href: 'https://www.linkedin.com/school/svcetirupati/'},
@@ -85,7 +85,7 @@ const Footer: React.FC<FooterProps> = ({
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative w-12 h-12 min-w-[48px] bg-slate-800/50 hover:bg-cyan-500/20 rounded-xl flex items-center justify-center text-cyan-400 
+                    className="group relative w-10 h-10 min-w-[40px] bg-slate-800/50 hover:bg-cyan-500/20 rounded-xl flex items-center justify-center text-cyan-400 sm:w-12 sm:h-12 sm:min-w-[48px] 
                              hover:scale-110 hover:text-white transition-all duration-200 shadow-lg hover:shadow-cyan-500/25"
                   >
                     {icon}
@@ -94,7 +94,7 @@ const Footer: React.FC<FooterProps> = ({
               </div>
             </div>
           </div>
-           <div className="space-y-6 lg:pt-2">
+           <div className="space-y-6 lg:pt-2 text-center sm:text-left">
             <h4 className="text-white font-semibold text-lg mb-4 tracking-wide">Contact Information</h4>
               
             <div className="space-y-2 text-sm text-slate-400">
