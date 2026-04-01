@@ -1,0 +1,228 @@
+/** Photo Animation Styles - IEEE YESIST Style */
+
+@keyframes photoRevealOnScroll {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes photoHoverZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+
+.svce-photo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #f1f5f9;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  animation: photoRevealOnScroll 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  will-change: transform, opacity;
+}
+
+.svce-photo-frame:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.svce-photo-frame:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.svce-photo-frame:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.svce-photo-frame:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.svce-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.svce-photo-frame:hover .svce-photo {
+  transform: scale(1.08);
+}
+
+/* Layout Grid */
+.svce-collage {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.svce-photo-top {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+.svce-photo-left {
+  aspect-ratio: 1 / 1;
+}
+
+.svce-photo-right {
+  aspect-ratio: 1 / 1;
+}
+
+.svce-photo-bottom {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+/* Section Reveal Animation */
+.svce-page {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.svce-page.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.svce-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.svce-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.svce-eyebrow {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e40af;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.svce-title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.svce-body {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #475569;
+}
+
+/* Responsive Grid */
+@media (max-width: 1024px) {
+  .svce-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .svce-collage {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .svce-collage {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .svce-photo-top,
+  .svce-photo-bottom {
+    grid-column: 1;
+    aspect-ratio: 4 / 3;
+  }
+
+  .svce-title {
+    font-size: 1.75rem;
+  }
+
+  .svce-body {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .svce-inner {
+    gap: 2rem;
+  }
+
+  .svce-copy {
+    gap: 1rem;
+  }
+
+  .svce-collage {
+    gap: 0.75rem;
+  }
+
+  .svce-photo-top,
+  .svce-photo-bottom {
+    aspect-ratio: 1 / 1;
+  }
+
+  .svce-title {
+    font-size: 1.5rem;
+  }
+
+  .svce-body {
+    font-size: 0.9rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .svce-photo-frame,
+  .svce-page,
+  .svce-photo {
+    animation: none;
+    transition: none;
+  }
+
+  .svce-photo-frame:hover .svce-photo {
+    transform: none;
+  }
+
+  .svce-page.in-view {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .svce-photo-frame {
+    background-color: #334155;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .svce-title {
+    color: #f1f5f9;
+  }
+
+  .svce-body {
+    color: #cbd5e1;
+  }
+}

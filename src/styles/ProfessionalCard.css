@@ -1,0 +1,53 @@
+/** Professional Card Styles - IEEE Academic Style */
+
+.professional-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  transform: translateY(20px);
+  animation-delay: var(--animation-delay, 0ms);
+}
+
+.professional-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.professional-card.hoverable {
+  cursor: pointer;
+}
+
+.professional-card.hoverable:hover {
+  border-color: #1e40af;
+  box-shadow: 0 10px 25px -5px rgba(30, 64, 175, 0.1);
+  transform: translateY(-4px);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .professional-card {
+    background-color: #1e293b;
+    border-color: #334155;
+  }
+
+  .professional-card.hoverable:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2);
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

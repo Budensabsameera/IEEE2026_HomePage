@@ -1,0 +1,191 @@
+/** Professional Button Styles - IEEE Academic Style */
+
+.professional-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.professional-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Primary Variant */
+.button-primary {
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+.button-primary:hover:not(:disabled) {
+  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.4);
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #1e3a8a 0%, #172d5f 100%);
+}
+
+.button-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Secondary Variant */
+.button-secondary {
+  background-color: #0f172a;
+  color: white;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
+.button-secondary:hover:not(:disabled) {
+  background-color: #1e293b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
+}
+
+.button-secondary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Outline Variant */
+.button-outline {
+  background-color: transparent;
+  color: #1e40af;
+  border: 2px solid #1e40af;
+  box-shadow: none;
+}
+
+.button-outline:hover:not(:disabled) {
+  background-color: #eff6ff;
+  border-color: #1e3a8a;
+  color: #1e3a8a;
+  transform: translateY(-2px);
+}
+
+.button-outline:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Ghost Variant */
+.button-ghost {
+  background-color: transparent;
+  color: #1e40af;
+  box-shadow: none;
+}
+
+.button-ghost:hover:not(:disabled) {
+  background-color: rgba(30, 64, 175, 0.08);
+  transform: translateY(-1px);
+}
+
+.button-ghost:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Size Variants */
+.button-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 4px;
+}
+
+.button-md {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.button-lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.button-text {
+  position: relative;
+  z-index: 1;
+}
+
+.button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+}
+
+/* Loading State */
+.button-spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .button-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .professional-button {
+    width: 100%;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .professional-button {
+    transition: none;
+  }
+
+  .professional-button:hover:not(:disabled),
+  .professional-button:active:not(:disabled) {
+    transform: none;
+  }
+
+  .button-spinner {
+    animation: none;
+    border: 2px solid currentColor;
+    opacity: 0.6;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .button-outline {
+    color: #60a5fa;
+    border-color: #60a5fa;
+  }
+
+  .button-outline:hover:not(:disabled) {
+    background-color: rgba(96, 165, 250, 0.1);
+    border-color: #93c5fd;
+    color: #93c5fd;
+  }
+
+  .button-ghost {
+    color: #60a5fa;
+  }
+
+  .button-ghost:hover:not(:disabled) {
+    background-color: rgba(96, 165, 250, 0.15);
+  }
+}

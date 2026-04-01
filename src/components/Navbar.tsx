@@ -1,61 +1,108 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import logo1 from "../assets/svcelogo2.jpg";
-import logo2 from "../assets/ieeelogo.jpg";
+import logo1 from "../assets/svce-logo.png";
+import logo2 from "../assets/ieeelogo.png";
 
-const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Execom", path: "/execom" },
+  { name: "Events", path: "/events" },
+  { name: "Achievements", path: "/achievements" },
+  { name: "Magazine", path: "/magazine" },
+  { name: "Contact", path: "/contact" },
+];
+
+function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50 && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isOpen]);
 
   return (
-    <nav className="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 shadow-lg text-white px-4 py-4 sm:px-6">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo */}
-        <div className="bg-transparent flex flex-row items-center gap-2 sm:gap-3">
-          <img src={logo1} alt="SVC Logo" className="bg-transparent h-6 w-auto sm:h-9" />
-          <img src={logo2} alt="IEEE Logo" className="bg-transparent h-6 w-auto sm:h-9" />
-        </div>
+    <nav className="sticky top-0 z-50 border-b border-slate-800/80 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 px-4 py-4 text-white shadow-lg backdrop-blur sm:px-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
+        <Link
+          to="/"
+          className="flex items-center gap-2 sm:gap-3"
+          onClick={() => setIsOpen(false)}
+        >
+          <img src={logo1} alt="SVC Logo" className="h-6 w-auto sm:h-9" />
+          <img src={logo2} alt="IEEE Logo" className="h-6 w-auto sm:h-9" />
+        </Link>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 lg:space-x-12">
-          <li><Link to="/" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Home</Link></li>
-          <li><Link to="/about" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">About</Link></li>
-          <li><Link to="/execom" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Execom</Link></li>
-          <li><Link to="/events" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Events</Link></li>
-          <li><Link to="/achievements" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Achievements</Link></li>
-          <li><Link to="/magazine" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Magazine</Link></li>
-          <li><Link to="/contact" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2">Contact</Link></li>
+        <ul className="hidden items-center gap-6 md:flex lg:gap-10">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <Link
+                to={link.path}
+                className="group relative block py-2 text-sm transition duration-200 hover:text-cyan-100"
+              >
+                {link.name}
+                <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-cyan-300 transition-transform duration-300 group-hover:scale-x-100" />
+              </Link>
+            </li>
+          ))}
         </ul>
 
-        {/* Mobile Menu Button */}
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden focus:outline-none"
+          type="button"
+          onClick={() => setIsOpen((open) => !open)}
+          className="md:hidden"
           aria-label="Toggle Menu"
         >
-          <svg className="w-6 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg
+            className="h-8 w-6 text-white transition-colors hover:text-cyan-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
             {isOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             )}
           </svg>
         </button>
       </div>
 
-      {/* Mobile Menu - FIXED PATHS */}
       {isOpen && (
-        <ul className="md:hidden mt-4 space-y-3 px-2 pb-4">
-          <li><Link to="/home" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Home</Link></li>
-          <li><Link to="/about" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>About</Link></li>
-          <li><Link to="/execom" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Execom</Link></li>
-          <li><Link to="/events" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Events</Link></li>
-          <li><Link to="/achievements" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Achievements</Link></li>
-          <li><Link to="/magazine" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Magazine</Link></li>
-          <li><Link to="/contact" className="hover:text-cyan-100 hover:scale-90 cursor-pointer block py-2" onClick={() => setIsOpen(false)}>Contact</Link></li>
-        </ul>
+        <div className="mx-auto mt-4 max-w-7xl border-t border-blue-800/80 pt-4 md:hidden">
+          <ul className="space-y-2 px-2 pb-2">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <Link
+                  to={link.path}
+                  className="block rounded-lg px-3 py-3 text-white transition-all duration-200 hover:bg-blue-900/50 hover:text-cyan-100"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </nav>
   );
-};
+}
 
 export default Navbar;

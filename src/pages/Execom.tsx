@@ -99,7 +99,7 @@ function MemberCard({ member }: { member: CommitteeMember }) {
 function Execom() {
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#f8fbff_0%,#eef6ff_42%,#f8fafc_100%)]">
-      <section className="relative overflow-hidden border-b border-slate-200/80 bg-slate-950 px-4 pb-18 pt-28 text-white sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden border-b border-slate-200/80 bg-slate-950 px-4 pb-18 pt-20 text-white sm:px-6 lg:px-8">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.24),transparent_28%),radial-gradient(circle_at_85%_20%,rgba(59,130,246,0.18),transparent_25%),linear-gradient(120deg,rgba(15,23,42,0.96),rgba(2,6,23,0.98))]" />
         <div className="absolute left-[-4rem] top-24 h-44 w-44 rounded-full bg-cyan-400/20 blur-3xl" />
         <div className="absolute bottom-0 right-[-2rem] h-56 w-56 rounded-full bg-blue-500/20 blur-3xl" />

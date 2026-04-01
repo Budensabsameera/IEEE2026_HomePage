@@ -1,0 +1,72 @@
+/* Cinematic Image Animation - Production Ready */
+
+.cinematic-container {
+  --animation-duration: 7s;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background-color: #000; /* Fallback while loading */
+}
+
+@supports (aspect-ratio: 16 / 9) {
+  .cinematic-container {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.cinematic-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  animation: cinemaFadeInZoom var(--animation-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  will-change: transform, opacity;
+}
+
+/* Main animation: Fade in + Slow zoom */
+@keyframes cinemaFadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Optional: Pause animation on hover (can be toggled) */
+.cinematic-container:hover .cinematic-image {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cinematic-container {
+    aspect-ratio: 4 / 3;
+  }
+
+  .cinematic-image {
+    animation-duration: calc(var(--animation-duration) * 0.9);
+  }
+}
+
+@media (max-width: 480px) {
+  .cinematic-container {
+    aspect-ratio: 1 / 1;
+  }
+
+  .cinematic-image {
+    animation-duration: calc(var(--animation-duration) * 0.8);
+  }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-image {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+  }
+}

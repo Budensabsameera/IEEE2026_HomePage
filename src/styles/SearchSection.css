@@ -1,0 +1,204 @@
+/** Search Section Animations - IEEE YESIST Style */
+
+@keyframes searchFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes inputFocus {
+  0% {
+    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.1);
+  }
+  100% {
+    box-shadow: 0 12px 30px rgba(30, 64, 175, 0.25);
+  }
+}
+
+.search-section {
+  padding: 4rem 1.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  animation: searchFadeInUp 0.8s ease-out forwards;
+}
+
+.search-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.search-title {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.search-subtitle {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: #64748b;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.search-form {
+  margin-top: 2rem;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  will-change: box-shadow, border-color;
+}
+
+.search-input-wrapper.focused {
+  border-color: #1e40af;
+  box-shadow: 0 12px 30px rgba(30, 64, 175, 0.25);
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #0f172a;
+  font-family: inherit;
+  transition: color 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: #94a3b8;
+}
+
+.search-input:focus::placeholder {
+  color: #cbd5e1;
+}
+
+.search-button {
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.search-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #1e3a8a 0%, #172d5f 100%);
+}
+
+.search-button:active {
+  transform: scale(0.98);
+}
+
+.search-button svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-section {
+    padding: 3rem 1rem;
+  }
+
+  .search-input {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .search-button {
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-section {
+    padding: 2rem 1rem;
+  }
+
+  .search-input {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9rem;
+  }
+
+  .search-button {
+    padding: 0.625rem 0.875rem;
+  }
+
+  .search-button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .search-section,
+  .search-input-wrapper,
+  .search-button {
+    animation: none;
+    transition: none;
+  }
+
+  .search-button:hover {
+    transform: none;
+  }
+
+  .search-button:active {
+    transform: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .search-section {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  }
+
+  .search-title {
+    color: #f1f5f9;
+  }
+
+  .search-subtitle {
+    color: #cbd5e1;
+  }
+
+  .search-input-wrapper {
+    background: #334155;
+    border-color: #475569;
+  }
+
+  .search-input {
+    color: #f1f5f9;
+  }
+
+  .search-input::placeholder {
+    color: #94a3b8;
+  }
+
+  .search-input:focus::placeholder {
+    color: #64748b;
+  }
+}
