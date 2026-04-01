@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const stats = [
-  { value: 35, label: "Members" },
+  { value: 73, label: "Members" },
   { value: 8, label: "Societies" },
-  { value: 28, label: "Events" },
-  { value: 46, label: "Workshops" },
+  { value: 78, label: "Events" },
+  { value: 23, label: "Workshops" },
 ];
 
 function StatsSection() {

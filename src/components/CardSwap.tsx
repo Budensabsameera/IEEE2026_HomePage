@@ -1,14 +1,21 @@
-import React, {
+import {
   Children,
   cloneElement,
+  createRef,
   forwardRef,
   isValidElement,
-  ReactElement,
-  ReactNode,
-  RefObject,
   useEffect,
   useMemo,
   useRef,
+} from "react";
+import type {
+  FC,
+  HTMLAttributes,
+  MouseEvent,
+  ReactElement,
+  ReactNode,
+  RefAttributes,
+  RefObject,
 } from "react";
 import gsap from "gsap";
 
@@ -25,7 +32,7 @@ export interface CardSwapProps {
   children: ReactNode;
 }
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   customClass?: string;
 }
 
@@ -70,7 +77,7 @@ const placeNow = (el: HTMLElement, slot: Slot, skew: number) =>
     force3D: true,
   });
 
-const CardSwap: React.FC<CardSwapProps> = ({
+const CardSwap: FC<CardSwapProps> = ({
   width = 520,
   height = 360,
   cardDistance = 60,
@@ -106,7 +113,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
     [children],
   );
   const refs = useMemo<CardRef[]>(
-    () => childArr.map(() => React.createRef<HTMLDivElement>()),
+    () => childArr.map(() => createRef<HTMLDivElement>()),
     [childArr.length],
   );
 
@@ -213,10 +220,10 @@ const CardSwap: React.FC<CardSwapProps> = ({
           ref: refs[i],
           style: { width, height, ...(child.props.style ?? {}) },
           onClick: (e) => {
-            child.props.onClick?.(e as React.MouseEvent<HTMLDivElement>);
+            child.props.onClick?.(e as MouseEvent<HTMLDivElement>);
             onCardClick?.(i);
           },
-        } as CardProps & React.RefAttributes<HTMLDivElement>)
+        } as CardProps & RefAttributes<HTMLDivElement>)
       : child,
   );
 
