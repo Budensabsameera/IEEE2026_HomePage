@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo1 from "../assets/svce-logo.png";
-import logo2 from "../assets/ieeelogo.jpg";
+import logo2 from "../assets/ieeelogo.png";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const shouldClose = window.scrollY > 50 && isOpen;
+      if (shouldClose) {
+        setIsOpen(false);
+      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isOpen]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -26,24 +28,24 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 shadow-lg text-white px-6 py-3">
- <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <nav className="fixed top-0 w-full z-50 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 shadow-lg text-white px-6 py-3">
+ <div className="w-full flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex flex-row items-center gap-2 hover:opacity-80 transition-opacity duration-300">
-          <img src={logo1} alt="SVC Logo" className="h-5 w-auto sm:h-10 hover:scale-110 transition-transform duration-300" />
-          <img src={logo2} alt="IEEE Logo" className="h-5 w-auto sm:h-10 hover:scale-110 transition-transform duration-300" />
+        <Link to="/" className="flex flex-row items-center justify-start gap-3 hover:opacity-80 transition-opacity duration-300">
+          <img src={logo1} alt="SVC Logo" className="h-6 w-auto sm:h-14 hover:scale-110 transition-transform duration-300" />
+          <img src={logo2} alt="IEEE Logo" className="h-6 w-auto sm:h-12 hover:scale-110 transition-transform duration-300" />
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-1">
+        <ul className="hidden md:flex space-x">
           {navLinks.map((link) => (
             <li key={link.name}>
               <Link 
                 to={link.path} 
-                className="relative px-3 py-2 text-white text-sm font-medium group"
+                className="relative px-6  text-white text-sm font-medium group"
               >
                 {link.name}
-                <span className="absolute bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
               </Link>
             </li>
           ))}

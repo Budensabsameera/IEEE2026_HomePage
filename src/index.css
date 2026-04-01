@@ -138,3 +138,54 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes achievement-text-slide {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    0% {
+      opacity: 0;
+      transform: translateX(-36px);
+    }
+  }
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-50% - 0.5rem));
+    }
+  }
+
+  .marquee-fade {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+
+  .marquee-track {
+    animation: marquee-scroll 28s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-reverse {
+    animation-direction: reverse;
+  }
+
+  .marquee-fade:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .achievement-hero-text {
+    animation: achievement-text-slide 0.7s ease-out 1;
+    transform-origin: left center;
+    will-change: transform;
+  }
+}

@@ -8,17 +8,18 @@ type Card = {
 };
 
 const cards: Card[] = [
+  
   {
     id: 1,
-    title: "Tech Symposium",
-    description: "A national-level technical symposium with expert sessions.",
-    image: "/ach1.jpg",
+    title: "Inaugural",
+    description: "Empowering innovation and collaboration through IEEE inaugural event.",
+    image: "/inaugural_event.png",
   },
   {
     id: 2,
-    title: "Hackathon",
-    description: "24-hour hackathon focused on innovation and teamwork.",
-    image: "/ach2.jpg",
+    title: "VLsI Workshop",
+    description: "Front-End to Back-End: A Complete VLSI Design Flow",
+    image: "/vls1_event.jpg",
   },
   {
     id: 3,

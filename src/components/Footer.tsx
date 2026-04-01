@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'; 
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import logo1 from "../assets/svce-logo.png";
-import logo2 from "../assets/ieeelogo.jpg";
+import logo2 from "../assets/ieeelogo.png";
 
 interface FooterProps {
   svceLeft?: string;

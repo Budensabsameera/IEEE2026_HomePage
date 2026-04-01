@@ -2,27 +2,28 @@ import { useEffect, useState } from "react";
 
 type FadeCarouselProps = {
   images: string[];
+  interval?: number;
 };
 
-const FadeCarousel = ({ images }: FadeCarouselProps) => {
+const FadeCarousel = ({ images, interval }: FadeCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  // Desktop faster, mobile slower
-  const interval =
-    typeof window !== "undefined" && window.innerWidth >= 1024
-      ? 2000 // desktop speed
-      : 4000; // mobile speed
+  const slideInterval =
+    interval ??
+    ((typeof window !== "undefined" && window.innerWidth >= 1024)
+      ? 2000
+      : 4000);
 
   useEffect(() => {
     if (paused) return;
 
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, interval);
+    }, slideInterval);
 
     return () => clearInterval(timer);
-  }, [images.length, interval, paused]);
+  }, [images.length, paused, slideInterval]);
 
   return (
     <div

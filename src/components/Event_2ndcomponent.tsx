@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 
+type AccordionItemData = {
+  id: number;
+  imageUrl: string;
+  title: string;
+};
 
-// --- Data for the image accordion ---
+type AccordionItemProps = {
+  item: AccordionItemData;
+  isActive: boolean;
+  onMouseEnter: () => void;
+};
+
 const accordionItems = [
-  { id: 1, imageUrl: '/ach1.jpg' },
-  { id: 2, imageUrl: '/ach2.jpg' },
-  { id: 3, imageUrl: '/ach3.jpg' },
-  { id: 4, imageUrl: '/ach4.jpg' },
-  { id: 5, imageUrl: '/ach5.jpg' },
+  { id: 1, imageUrl: "/principal_inaugural.png", title: "Tech Symposium" },
+  { id: 2, imageUrl: "/principal_inaugural.png", title: "Hackathon" },
+  { id: 3, imageUrl: "/ach3.jpg", title: "Workshop" },
+  { id: 4, imageUrl: "/ach4.jpg", title: "Guest Lecture" },
+  { id: 5, imageUrl: "/ach5.jpg", title: "Project Expo" },
 ];
 
-
-// --- Accordion Item Component ---
-const AccordionItem = ({ item, isActive, onMouseEnter }) => {
+const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => {
   return (
     <div
       className={`
@@ -25,8 +33,13 @@ const AccordionItem = ({ item, isActive, onMouseEnter }) => {
       {/* Background Image */}
       <img
         src={item.imageUrl}
+        alt={item.title}
         className="absolute inset-0 w-full h-full object-cover"
-        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x450/2d3748/ffffff?text=Image+Error'; }}
+        onError={(event) => {
+          const image = event.currentTarget;
+          image.onerror = null;
+          image.src = "https://placehold.co/400x450/2d3748/ffffff?text=Image+Error";
+        }}
       />
       {/* Dark overlay for better text readability */}
       {/* <div className="absolute inset-0 bg-black bg-opacity-40"></div> */}
@@ -49,13 +62,10 @@ const AccordionItem = ({ item, isActive, onMouseEnter }) => {
     </div>
   );
 };
-
-
-// --- Main App Component ---
 export function LandingAccordionItem() {
   const [activeIndex, setActiveIndex] = useState(4);
 
-  const handleItemHover = (index) => {
+  const handleItemHover = (index: number) => {
     setActiveIndex(index);
   };
 
